@@ -1,10 +1,10 @@
-#Modulo 1
+#Módulo 1: Bienvenida.
 def bienvenida():
     print("Bienvenid@ a la tiendita escolar")
     nombre = input("¿Cuál es tu nombre? ")
     return nombre
 
-#Modulo 2
+#Módulo 2: Menú de productos.
 def mostrar_productos():
     productos = {
         1: ("Galletas", 10),
@@ -20,7 +20,7 @@ def mostrar_productos():
         print(f"{clave}. {nombre} - ${precio}")
     return productos
 
-#Modulo 3
+#Módulo 3: Compras.
 def realizar_compra():
     productos = mostrar_productos()
     carrito = {}
@@ -65,3 +65,28 @@ def realizar_compra():
             print(f"{producto}: {cantidad} x ${precio} = ${cantidad * precio}")
 
     return carrito
+
+#Módulo 4: Pagos.
+def procesar_pago(carrito):
+    total = 0
+    print("\nCalculando el total...")
+
+    for producto, (cantidad, precio) in carrito.items():
+        total += cantidad * precio
+    print(f"\nTotal a pagar: ${total}") 
+
+    while True:
+        try:
+            pago = float(input("Ingresa la cantidad con la que vas a pagar: $"))
+       
+            if pago < total:
+                print("Monto insuficiente. Intenta de nuevo.")
+            else:
+                cambio = pago - total 
+                print(f"Pago recibido: ${pago}")
+                print(f"Cambio: ${round(cambio, 2)}")
+                return total, pago, round(cambio, 2) 
+        except ValueError:
+            print("Entrada inválida. Ingresa un número válido.")
+
+#Módulo 5: Ticket y cierre. 
